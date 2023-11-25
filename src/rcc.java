@@ -8,11 +8,11 @@ public class rcc {
 	public static void main(String[] args) {
 		System.out.println("\n\tWelcome to IRIS NativeAPI CommandLine Extension\n") ;
 	// init connection
-		String ip   = cmd("serverIP","127.0.0.1") ;
-		String port = cmd("serverPORT","1972") ;
-		String nspc = cmd("namespace","USER") ;
-		String user = cmd("username","_SYSTEM") ;
-		String pwd  = cmd("password","SYS") ;
+		String ip   = args[0];
+		String port = args[1];
+		String nspc = args[2];
+		String user = args[3];
+		String pwd  = args[4];
 	// get connected
 	 try {
 		IRISConnection conn = (IRISConnection) DriverManager.getConnection("jdbc:IRIS://"+ip+":"+port+"/"+nspc,user,pwd);
@@ -22,6 +22,7 @@ public class rcc {
 		String node=act(iris, "quit ##class(%SYS.System).GetNodeName()") ;
     System.out.println("\nConnected to Instance "+inst+" on Server "+node+"\n") ;
     String demo = "0";
+    System.out.println("----!!!------------") ;  
 // the main loop   
     while (demo.length()>0) {
       demo = menue(iris);

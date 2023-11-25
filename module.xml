@@ -4,11 +4,12 @@
     <Module>
       <Name>nacl-jv</Name>
 	  <Description>Use NativeAPI Extension from Java</Description> 
-      <Version>0.0.6</Version>
+      <Version>0.0.7</Version>
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
       <Resource Name="dc.MultiD.GBL"/>
       <Resource Name="javademo.MAC"/>    
+	  <Resource Name="%ZX.INT"/>
       <FileCopy Name="src/rcc.java" Target="${libdir}"/>
     </Module>
   </Document>
