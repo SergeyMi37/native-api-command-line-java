@@ -4,5 +4,6 @@
     ;zpm "install webterminal"
     ;zpm "install nacl-server"
     zpm "load https://github.com/SergeyMi37/apptools-admin"
+    zpm "load https://github.com/SergeyMi37/appmsw-django-adminlte"
     zpm "load /opt/irisapp/ -v":1
     halt

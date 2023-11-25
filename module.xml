@@ -9,7 +9,7 @@
       <SourcesRoot>src</SourcesRoot>
       <Resource Name="dc.MultiD.GBL"/>
       <Resource Name="javademo.MAC"/>    
-	  <Resource Name="%ZX.INT"/>
+	  <Resource Name="%ZAPM.INT"/>
       <FileCopy Name="src/rcc.java" Target="${libdir}"/>
     </Module>
   </Document>
