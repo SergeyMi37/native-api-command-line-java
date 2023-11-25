@@ -13,19 +13,28 @@ public class rcc {
 		String nspc = args[2];
 		String user = args[3];
 		String pwd  = args[4];
-    String SomeClass = args[5];
-    String SomeMethod = args[6];
+    String className = args[5];
+    String methodName = args[6];
     String initstr = args[7];
 	// get connected
 	 try {
 		IRISConnection conn = (IRISConnection) DriverManager.getConnection("jdbc:IRIS://"+ip+":"+port+"/"+nspc,user,pwd);
     IRIS iris = IRIS.createIRIS(conn) ;
 
-    IRISReference valueRef = new IRISReference(initstr); // set inital value to null string
-    iris.classMethodString(SomeClass,SomeMethod,valueRef);
-    String myString = valueRef.value;  // get the method result
-    System.out.println("---out---" + myString) ;  
+      String stat ="";
 
+      try {
+    // This call will throw a RuntimeException containing the %Status error message:
+      ///  iris.classMethodStatusCode(className,methodName,initstr);
+    // This call would fail silently or throw a generic error message:
+        stat = iris.classMethodString(className,methodName,initstr);
+        System.out.println("\nPassword validated! "+stat);
+
+      } catch (RuntimeException e) {
+        System.out.println("Call to "+methodName+ "(\""+ stat +"\") returned error:");
+        System.out.println(e.getMessage());
+      }
+	
     String inst = act(iris, "quit ##class(%SYS.System).GetInstanceName()") ;
 		String node=act(iris, "quit ##class(%SYS.System).GetNodeName()") ;
     System.out.println("\nConnected to Instance "+inst+" on Server "+node+"\n") ;
