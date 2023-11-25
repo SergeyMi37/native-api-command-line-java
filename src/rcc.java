@@ -21,18 +21,13 @@ public class rcc {
 		IRISConnection conn = (IRISConnection) DriverManager.getConnection("jdbc:IRIS://"+ip+":"+port+"/"+nspc,user,pwd);
     IRIS iris = IRIS.createIRIS(conn) ;
 
-      String stat ="";
-
       try {
-    // This call will throw a RuntimeException containing the %Status error message:
-      ///  iris.classMethodStatusCode(className,methodName,initstr);
-    // This call would fail silently or throw a generic error message:
-        stat = iris.classMethodString(className,methodName,initstr);
-        System.out.println("\nPassword validated! "+stat);
+		    String ans=iris.functionString("run","%ZX",className,methodName,initstr) ;	
+		  //return ans ;
+        System.out.println("d!!! " + ans);
 
       } catch (RuntimeException e) {
-        System.out.println("Call to "+methodName+ "(\""+ stat +"\") returned error:");
-        System.out.println(e.getMessage());
+        System.out.println("Err " + e.getMessage());
       }
 	
     String inst = act(iris, "quit ##class(%SYS.System).GetInstanceName()") ;
