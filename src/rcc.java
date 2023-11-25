@@ -13,16 +13,24 @@ public class rcc {
 		String nspc = args[2];
 		String user = args[3];
 		String pwd  = args[4];
+    String SomeClass = args[5];
+    String SomeMethod = args[6];
+    String initstr = args[7];
 	// get connected
 	 try {
 		IRISConnection conn = (IRISConnection) DriverManager.getConnection("jdbc:IRIS://"+ip+":"+port+"/"+nspc,user,pwd);
     IRIS iris = IRIS.createIRIS(conn) ;
 
+    IRISReference valueRef = new IRISReference(initstr); // set inital value to null string
+    iris.classMethodString(SomeClass,SomeMethod,valueRef);
+    String myString = valueRef.value;  // get the method result
+    System.out.println("---out---" + myString) ;  
+
     String inst = act(iris, "quit ##class(%SYS.System).GetInstanceName()") ;
 		String node=act(iris, "quit ##class(%SYS.System).GetNodeName()") ;
     System.out.println("\nConnected to Instance "+inst+" on Server "+node+"\n") ;
     String demo = "0";
-    System.out.println("----!!!------------") ;  
+
 // the main loop   
     while (demo.length()>0) {
       demo = menue(iris);
